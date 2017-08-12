@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS"/>
+<title>簡易アップローダー</title>
+<style type="text/css">
+<!--
+a
+{
+	color: #e0f0ff;
+	text-decoration: none;
+}
+a:hover
+{
+	text-decoration: underline;
+}
+body
+{
+	background-color: #001020;
+}
+div
+{
+	color: #b0c0d0;
+	font-family: Meiryo;
+	margin: 1em;
+	white-space: nowrap;
+}
+div.f-option
+{
+	color: #808080;
+	font-size: x-small;
+}
+img
+{
+	border-style: none;
+	max-width: 100%;
+	max-height: 100%;
+}
+form
+{
+	display: inline;
+}
+-->
+</style>
+</head>
+<body>
+<form method="post" action="/" accept-charset="UTF-8" enctype="multipart/form-data">
+<div><input type="file" name="file" size="100"/>$(password)$(no-overwrite)</div>
+<div><input type="submit" value="アップロード / リスト更新"/></div>
+</form>
+<hr/>
+$(uploaded-file-list)
+<hr/>
+<div>ファイル数: $(uploaded-file-num) 個　/　ファイルサイズ合計: $(uploaded-file-total-size) bytes</div>
+<div class="f-option">あと $(file-num-free) 個のファイルをアップロードできます。あと $(dir-free) バイトの領域が使用できます。</div>
+<br/>
+<br/>
+<br/>
+</body>
+</html>

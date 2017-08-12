@@ -1,0 +1,7 @@
+■以下の外部ファイルをリリース物に含める。
+
+	..\HTT\Get\Release\Get.exe
+	..\HTT\HTT\Release\HTT.exe
+	..\HTT\doc\NotFound.htm_
+	..\HTT\doc\ServiceUnavailable.htm_
+	..\HTT\doc\HTT.conf
