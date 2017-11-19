@@ -89,20 +89,21 @@ cout("\n");
 #endif
 }
 
-#if 0
+#if 1
 
-#define BUFFERSIZE 65 // == プロセスで必要なバイト数
+#define BUFFERSIZE 65536
+//#define BUFFERSIZE 65 // == プロセスで必要なバイト数 <- 本当か？
 
 int getCryptoByte(void)
 {
 	static uchar buffer[BUFFERSIZE];
-	static uint index;
+	static uint index = BUFFERSIZE;
 
-	errorCase(BUFFERSIZE <= index);
-
-	if(!index)
+	if(index == BUFFERSIZE)
+	{
 		getCryptoBlock_MS(buffer, BUFFERSIZE);
-
+		index = 0;
+	}
 	return buffer[index++];
 }
 
@@ -162,6 +163,9 @@ int getCryptoByte(void)
 	}
 	return buffer[index++];
 }
+
+#endif
+
 uint getCrypto32(void)
 {
 	return
@@ -170,9 +174,6 @@ uint getCrypto32(void)
 		((uint)getCryptoByte() <<  8) |
 		((uint)getCryptoByte() <<  0);
 }
-
-#endif
-
 char *makePw(int radix, int len) // radix: 1 - 62
 {
 	char *pw = (char *)memAlloc(len + 1);
