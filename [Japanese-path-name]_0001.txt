@@ -5,3 +5,4 @@
 	..\HTT\doc\NotFound.htm_
 	..\HTT\doc\ServiceUnavailable.htm_
 	..\HTT\doc\HTT.conf
+	..\HTT\doc\MimeType.tsv_
