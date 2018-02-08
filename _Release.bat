@@ -8,7 +8,7 @@ COPY /B ..\HTT\HTT\Release\HTT.exe out
 COPY /B ..\HTT\doc\HTT.conf out
 COPY /B ..\HTT\doc\NotFound.htm_ out
 COPY /B ..\HTT\doc\ServiceUnavailable.htm_ out
-COPY /B ..\HTT\doc\MimeType.tsv_ out
+COPY /B ..\HTT\doc\MimeType.tsv out
 COPY /B ..\HTT\Tools\MimeType\MimeType\bin\Release\MimeType.exe out
 
 C:\Factory\Tools\xcp.exe doc out

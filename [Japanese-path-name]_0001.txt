@@ -5,5 +5,5 @@
 	..\HTT\doc\NotFound.htm_
 	..\HTT\doc\ServiceUnavailable.htm_
 	..\HTT\doc\HTT.conf
-	..\HTT\doc\MimeType.tsv_
+	..\HTT\doc\MimeType.tsv
 	..\HTT\Tools\MimeType\MimeType\bin\Release\MimeType.exe
