@@ -89,6 +89,29 @@ void ErrorRes2(char *source, int lineno, char *function)
 
 	termination(2);
 }
+void ErrorRes_417(void)
+{
+	//errorCase(!SendFileFullPath); // この場合、切断(HTT_Disconnect)が効かないので敢えて続行ということだと思う。@ 2018.2.19
+	if(!SendFileFullPath)
+	{
+		LOGPOS();
+		return;
+	}
+	errorCase(!ResponseModeFileFullPath);
+	
+	FILE *fp = fileOpen(SendFileFullPath, "wb");
+	
+	writeToken(fp, "HTTP/1.1 417 Green Tea" CRLF);
+	writeToken(fp, "Server: htt" CRLF);
+	writeToken(fp, "Connection: close" CRLF);
+	writeToken(fp, CRLF);
+
+	fileClose(fp);
+
+	createFile(ResponseModeFileFullPath);
+
+	termination(2);
+}
 
 void cout(char *format, ...)
 {

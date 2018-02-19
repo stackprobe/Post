@@ -28,6 +28,8 @@ void ErrorRes2(char *source, int lineno, char *function);
 #define ErrorRes() \
 	ErrorRes2(__FILE__, __LINE__, __FUNCTION__)
 
+void ErrorRes_417(void);
+
 #define LOGPOS() \
 	cout("%s (%d) %s\n", __FILE__, __LINE__, __FUNCTION__)
 

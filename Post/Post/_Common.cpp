@@ -81,11 +81,13 @@ void CheckDiskFree2(char *source, int lineno, char *function)
 }
 void WriteResponseHtmlFile(char *text)
 {
+	//errorCase(!SendFileFullPath); // この場合、切断(HTT_Disconnect)が効かないので敢えて続行ということだと思う。@ 2018.2.19
 	if(!SendFileFullPath)
 	{
 		LOGPOS();
 		return;
 	}
+	errorCase(!ResponseModeFileFullPath);
 
 	text = strx(text);
 	text = replace(text, "\r", "");

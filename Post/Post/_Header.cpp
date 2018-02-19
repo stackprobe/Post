@@ -40,6 +40,11 @@ static void MakeHeaderFile(void)
 		{
 			createFile(CHUNKEDMODE_FILE);
 		}
+		else if(!_stricmp(i->Name, "Expect") && !_stricmp(i->Value, "100-continue"))
+		{
+			//error(); // Expect: 100-continue ”ñ‘Î‰ž
+			ErrorRes_417();
+		}
 		writeLine_x(fp, xcout("%s:%s", i->Name, i->Value));
 	}
 	fileClose(fp);
