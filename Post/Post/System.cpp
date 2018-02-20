@@ -20,10 +20,11 @@ void termination(int errorlevel)
 	{
 		GetFinalizers()->UnaddElement()();
 	}
+	_fcloseall();
+
 	if(RemoveSendFileAtTermination)
 	{
 		LOGPOS();
-		_fcloseall();
 		remove(SendFileFullPath);
 	}
 	exit(errorlevel);
