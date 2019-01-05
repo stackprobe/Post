@@ -31,6 +31,8 @@ namespace Uploader
 				CheckSelfDir();
 				CheckCopiedExe();
 
+				Tools.AntiWindowsDefenderSmartScreen();
+
 				// HTT.exe 実行中に Uploader.exe を強制終了すると、HTT.exe がゾンビ化する！
 				// その対策！！！
 				HTTProc.Do停止信号();

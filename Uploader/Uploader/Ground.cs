@@ -214,5 +214,10 @@ namespace Uploader
 			catch
 			{ }
 		}
+
+		public bool Is初回起動()
+		{
+			return File.Exists(DAT_FILE) == false; // ? SaveConfig()を1度も実行していない。
+		}
 	}
 }
