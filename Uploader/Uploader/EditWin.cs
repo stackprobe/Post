@@ -110,6 +110,11 @@ namespace Uploader
 			this.UpdateUi();
 		}
 
+		private void EditWin_Shown(object sender, EventArgs e)
+		{
+			Tools.PostShown(this);
+		}
+
 		private void EditWin_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			this.SaveData();

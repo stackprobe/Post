@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace Uploader
 {
@@ -111,6 +112,55 @@ namespace Uploader
 				{
 					writer.WriteLine("[" + DateTime.Now + "] " + message);
 				}
+			}
+			catch
+			{ }
+		}
+
+		public static void PostShown(Form f)
+		{
+			List<Control.ControlCollection> controlTable = new List<Control.ControlCollection>();
+
+			controlTable.Add(f.Controls);
+
+			for (int index = 0; index < controlTable.Count; index++)
+			{
+				foreach (Control control in controlTable[index])
+				{
+					GroupBox gb = control as GroupBox;
+
+					if (gb != null)
+					{
+						controlTable.Add(gb.Controls);
+					}
+					TextBox tb = control as TextBox;
+
+					if (tb != null)
+					{
+						if (tb.ContextMenuStrip == null)
+						{
+							ContextMenuStrip menu = new ContextMenuStrip();
+
+							menu.Items.Add("全て選択(&A)", null, (sender, e) => { tb.Focus(); tb.SelectAll(); });
+							menu.Items.Add("選択範囲をコピー(&C)", null, (sender, e) => { tb.Focus(); CopyToClipboard(tb); });
+
+							tb.ContextMenuStrip = menu;
+						}
+					}
+				}
+			}
+		}
+
+		public static void CopyToClipboard(TextBox tb)
+		{
+			try
+			{
+				string text = tb.SelectedText;
+
+				if (text == "")
+					Clipboard.Clear();
+				else
+					Clipboard.SetText(text);
 			}
 			catch
 			{ }
