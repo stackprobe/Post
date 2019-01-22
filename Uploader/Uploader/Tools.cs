@@ -62,6 +62,8 @@ namespace Uploader
 			return "";
 		}
 
+		// sync > @ AntiWindowsDefenderSmartScreen
+
 		public static void AntiWindowsDefenderSmartScreen()
 		{
 			WriteLog("awdss_1");
@@ -98,6 +100,8 @@ namespace Uploader
 			WriteLog("awdss_4");
 		}
 
+		// < sync
+
 		private static string LogFile = null;
 		private static long WL_Count = 0;
 
@@ -116,6 +120,8 @@ namespace Uploader
 			catch
 			{ }
 		}
+
+		// sync > @ PostShown
 
 		public static void PostShown(Form f)
 		{
@@ -154,6 +160,8 @@ namespace Uploader
 				}
 			}
 		}
+
+		// < sync
 	}
 
 	public class EventSet
