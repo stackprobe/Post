@@ -68,7 +68,7 @@ namespace Uploader
 		{
 			WriteLog("awdss_1");
 
-			if (Gnd.I.Is初回起動())
+			if (Is初回起動())
 			{
 				WriteLog("awdss_2");
 
@@ -101,6 +101,11 @@ namespace Uploader
 		}
 
 		// < sync
+
+		public static bool Is初回起動()
+		{
+			return Gnd.I.Is初回起動();
+		}
 
 		private static string LogFile = null;
 		private static long WL_Count = 0;
@@ -138,6 +143,22 @@ namespace Uploader
 					if (gb != null)
 					{
 						controlTable.Add(gb.Controls);
+					}
+					TabControl tc = control as TabControl;
+
+					if (tc != null)
+					{
+						foreach (TabPage tp in tc.TabPages)
+						{
+							controlTable.Add(tp.Controls);
+						}
+					}
+					SplitContainer sc = control as SplitContainer;
+
+					if (sc != null)
+					{
+						controlTable.Add(sc.Panel1.Controls);
+						controlTable.Add(sc.Panel2.Controls);
 					}
 					TextBox tb = control as TextBox;
 
