@@ -26,6 +26,8 @@ namespace Uploader
 		public readonly string DEFAULT_UPLOADDIR = "upload";
 		public readonly long DEFAULT_SHOWEDIMAGETOTALSIZEMAX = 30000000;
 		public readonly string DEFAULT_IMAGEEXTS = "bmp.gif.jpg.jpeg.png";
+		public readonly string DEFAULT_MOVIEEXTS = "avi.mp4.mpeg.mpg.webm";
+		public readonly string DEFAULT_MUSICEXTS = "mid.midi.mp3.wav.wma";
 
 		public readonly string LANG_E = "E";
 		public readonly string LANG_J = "J";
@@ -109,6 +111,10 @@ namespace Uploader
 		public bool ShowDownloadLinkFlag;
 		public int SortOrder;
 		public bool NoUpFaviconFlag;
+		public bool EmbedMovieFlag;
+		public string MovieExts;
+		public bool EmbedMusicFlag;
+		public string MusicExts;
 
 		public void LoadDataDefault()
 		{
@@ -128,6 +134,10 @@ namespace Uploader
 			this.ShowDownloadLinkFlag = false;
 			this.SortOrder = 0;
 			this.NoUpFaviconFlag = false;
+			this.EmbedMovieFlag = true;
+			this.MovieExts = Gnd.I.DEFAULT_MOVIEEXTS;
+			this.EmbedMusicFlag = true;
+			this.MusicExts = Gnd.I.DEFAULT_MUSICEXTS;
 		}
 
 		public void LoadData()
@@ -165,6 +175,10 @@ namespace Uploader
 				this.ShowDownloadLinkFlag = Tools.ParseLong(lines[i++], 0, 1, 0) == 1;
 				this.SortOrder = (int)Tools.ParseLong(lines[i++], 0, int.MaxValue, 0);
 				this.NoUpFaviconFlag = Tools.ParseLong(lines[i++], 0, 1, 0) == 1;
+				this.EmbedMovieFlag = Tools.ParseLong(lines[i++], 0, 1, 0) == 1;
+				this.MovieExts = lines[i++];
+				this.EmbedMusicFlag = Tools.ParseLong(lines[i++], 0, 1, 0) == 1;
+				this.MusicExts = lines[i++];
 
 				// ----
 			}
@@ -201,6 +215,10 @@ namespace Uploader
 				lines.Add("" + (this.ShowDownloadLinkFlag ? 1 : 0));
 				lines.Add("" + this.SortOrder);
 				lines.Add("" + (this.NoUpFaviconFlag ? 1 : 0));
+				lines.Add("" + (this.EmbedMovieFlag ? 1 : 0));
+				lines.Add("" + this.MovieExts);
+				lines.Add("" + (this.EmbedMusicFlag ? 1 : 0));
+				lines.Add("" + this.MusicExts);
 
 				// ----
 

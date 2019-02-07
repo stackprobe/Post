@@ -359,5 +359,16 @@ namespace Uploader
 			this.ShowedImageTotalSizeMax.Text = "" + Gnd.I.DEFAULT_SHOWEDIMAGETOTALSIZEMAX;
 			this.ImageExts.Text = Gnd.I.DEFAULT_IMAGEEXTS;
 		}
+
+		private void MovieMusicEmbedBtn_Click(object sender, EventArgs e)
+		{
+			this.Visible = false;
+
+			using (MovieMusicEmbedDlg f = new MovieMusicEmbedDlg())
+			{
+				f.ShowDialog();
+			}
+			this.Visible = true;
+		}
 	}
 }

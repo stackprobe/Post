@@ -56,6 +56,7 @@
 			this.ShowedImageTotalSizeMaxデフォルトBtn = new System.Windows.Forms.Button();
 			this.PortNoデフォルトBtn = new System.Windows.Forms.Button();
 			this.UploadDirデフォルトBtn = new System.Windows.Forms.Button();
+			this.MovieMusicEmbedBtn = new System.Windows.Forms.Button();
 			this.画像の表示Grp = new System.Windows.Forms.GroupBox();
 			this.画像ラベル2 = new System.Windows.Forms.Label();
 			this.画像ラベル1_1 = new System.Windows.Forms.Label();
@@ -98,7 +99,6 @@
 			this.UploadDir.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.UploadDir.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.UploadDir.Location = new System.Drawing.Point(253, 171);
-			this.UploadDir.MaxLength = 5;
 			this.UploadDir.Name = "UploadDir";
 			this.UploadDir.ReadOnly = true;
 			this.UploadDir.Size = new System.Drawing.Size(393, 31);
@@ -125,7 +125,7 @@
 			this.リセットBtn.Location = new System.Drawing.Point(610, 484);
 			this.リセットBtn.Name = "リセットBtn";
 			this.リセットBtn.Size = new System.Drawing.Size(128, 54);
-			this.リセットBtn.TabIndex = 28;
+			this.リセットBtn.TabIndex = 29;
 			this.リセットBtn.Text = "リセット";
 			this.ToolTips.SetToolTip(this.リセットBtn, "このダイアログを開いた時の状態に戻します。");
 			this.リセットBtn.UseVisualStyleBackColor = true;
@@ -246,6 +246,7 @@
 			// 
 			this.ImageExts.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.ImageExts.Location = new System.Drawing.Point(241, 98);
+			this.ImageExts.MaxLength = 1000;
 			this.ImageExts.Name = "ImageExts";
 			this.ImageExts.Size = new System.Drawing.Size(465, 31);
 			this.ImageExts.TabIndex = 6;
@@ -294,6 +295,7 @@
 			// 
 			this.Password.Font = new System.Drawing.Font("メイリオ", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.Password.Location = new System.Drawing.Point(27, 400);
+			this.Password.MaxLength = 1000;
 			this.Password.Name = "Password";
 			this.Password.Size = new System.Drawing.Size(189, 31);
 			this.Password.TabIndex = 19;
@@ -319,7 +321,7 @@
 			this.デフォルトBtn.Location = new System.Drawing.Point(476, 484);
 			this.デフォルトBtn.Name = "デフォルトBtn";
 			this.デフォルトBtn.Size = new System.Drawing.Size(128, 54);
-			this.デフォルトBtn.TabIndex = 27;
+			this.デフォルトBtn.TabIndex = 28;
 			this.デフォルトBtn.Text = "デフォルト";
 			this.ToolTips.SetToolTip(this.デフォルトBtn, "全ての項目をデフォルト値に戻します。");
 			this.デフォルトBtn.UseVisualStyleBackColor = true;
@@ -360,6 +362,18 @@
 			this.ToolTips.SetToolTip(this.UploadDirデフォルトBtn, "[アップロード先フォルダ]をデフォルト値に戻します。");
 			this.UploadDirデフォルトBtn.UseVisualStyleBackColor = true;
 			this.UploadDirデフォルトBtn.Click += new System.EventHandler(this.UploadDirデフォルトBtn_Click);
+			// 
+			// MovieMusicEmbedBtn
+			// 
+			this.MovieMusicEmbedBtn.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.MovieMusicEmbedBtn.Location = new System.Drawing.Point(498, 400);
+			this.MovieMusicEmbedBtn.Name = "MovieMusicEmbedBtn";
+			this.MovieMusicEmbedBtn.Size = new System.Drawing.Size(240, 31);
+			this.MovieMusicEmbedBtn.TabIndex = 27;
+			this.MovieMusicEmbedBtn.Text = "動画・音楽ファイルの埋め込み";
+			this.ToolTips.SetToolTip(this.MovieMusicEmbedBtn, "[画像の表示]をデフォルト値に戻します。");
+			this.MovieMusicEmbedBtn.UseVisualStyleBackColor = true;
+			this.MovieMusicEmbedBtn.Click += new System.EventHandler(this.MovieMusicEmbedBtn_Click);
 			// 
 			// 画像の表示Grp
 			// 
@@ -503,6 +517,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(761, 559);
+			this.Controls.Add(this.MovieMusicEmbedBtn);
 			this.Controls.Add(this.NoUpFavicon);
 			this.Controls.Add(this.UploadDirデフォルトBtn);
 			this.Controls.Add(this.label3);
@@ -537,7 +552,7 @@
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
 			this.Name = "EditWin";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Uploader / 設定";
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditWin_FormClosed);
 			this.Load += new System.EventHandler(this.EditWin_Load);
@@ -588,5 +603,6 @@
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button UploadDirデフォルトBtn;
 		private System.Windows.Forms.CheckBox NoUpFavicon;
+		private System.Windows.Forms.Button MovieMusicEmbedBtn;
 	}
 }

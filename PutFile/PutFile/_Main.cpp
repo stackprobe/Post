@@ -235,6 +235,10 @@ static void LoadDataFile(void)
 	ShowDownloadLinkFlag = s2i_x(neReadLine(fp));
 	SortOrder = s2i_x(neReadLine(fp));
 	NoUpFaviconFlag = s2i_x(neReadLine(fp));
+	EmbedMovieFlag = s2i_x(neReadLine(fp));
+	MovieExts = resTokenize_xc(neReadLine(fp), ".");
+	EmbedMusicFlag = s2i_x(neReadLine(fp));
+	MusicExts = resTokenize_xc(neReadLine(fp), ".");
 
 	fileClose(fp);
 
@@ -252,6 +256,11 @@ static void LoadDataFile(void)
 	cout("NoOverwriteFlag: %d\n", NoOverwriteFlag);
 	cout("ShowDownloadLinkFlag: %d\n", ShowDownloadLinkFlag);
 	cout("SortOrder: %d\n", SortOrder);
+	cout("NoUpFaviconFlag: %d\n", NoUpFaviconFlag);
+	cout("EmbedMovieFlag: %d\n", EmbedMovieFlag);
+	cout("MovieExts: %d\n", MovieExts->GetCount());
+	cout("EmbedMusicFlag: %d\n", EmbedMusicFlag);
+	cout("MusicExts: %d\n", MusicExts->GetCount());
 
 	errorCase(UploadedFileNumMax < 1);
 	errorCase(UploadDirSizeMax < 0);
@@ -266,6 +275,12 @@ static void LoadDataFile(void)
 	// HTTPassword
 	// NoOverwriteFlag
 	// ShowDownloadLinkFlag
+	// SortOrder
+	// NoUpFaviconFlag
+	// EmbedMovieFlag
+	// MovieExts
+	// EmbedMusicFlag
+	// MusicExts
 
 	memFree(datFile);
 }
@@ -492,6 +507,28 @@ static void MakeIndex(void)
 				"</form>"
 				,lFHref
 				,*HTTPassword ? " / PWD:<input type=\"password\" name=\"password\"/>" : ""
+				));
+		}
+		if(
+			1 <= fileSize &&
+			EmbedMovieFlag &&
+			getIndex(MovieExts, getExt(file), (int (*)(char *, char *))_stricmp) != -1
+			)
+		{
+			line = addToken_x(line, xcout(
+				"<br/><video src=\"%s\" controls style=\"max-height: 75vh;\"></video>"
+				,lFHref
+				));
+		}
+		if(
+			1 <= fileSize &&
+			EmbedMusicFlag &&
+			getIndex(MusicExts, getExt(file), (int (*)(char *, char *))_stricmp) != -1
+			)
+		{
+			line = addToken_x(line, xcout(
+				"<br/><audio src=\"%s\" controls></audio>"
+				,lFHref
 				));
 		}
 		if(

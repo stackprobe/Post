@@ -17,6 +17,10 @@ int NoOverwriteFlag;
 int ShowDownloadLinkFlag;
 int SortOrder;
 int NoUpFaviconFlag;
+int EmbedMovieFlag;
+autoList<char *> *MovieExts;
+int EmbedMusicFlag;
+autoList<char *> *MusicExts;
 
 // }
 

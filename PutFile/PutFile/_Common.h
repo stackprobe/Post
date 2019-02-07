@@ -5,6 +5,8 @@ typedef enum Lang_et
 }
 Lang_t;
 
+// .dat {
+
 extern int UploadedFileNumMax;
 extern __int64 UploadDirSizeMax;
 extern __int64 UploadDiskFreeMin;
@@ -20,6 +22,12 @@ extern int NoOverwriteFlag;
 extern int ShowDownloadLinkFlag;
 extern int SortOrder;
 extern int NoUpFaviconFlag;
+extern int EmbedMovieFlag;
+extern autoList<char *> *MovieExts;
+extern int EmbedMusicFlag;
+extern autoList<char *> *MusicExts;
+
+// }
 
 extern char *ClientIP;
 extern char *SendFileFullPath;
