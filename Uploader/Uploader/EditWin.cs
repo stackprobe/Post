@@ -364,7 +364,7 @@ namespace Uploader
 		{
 			this.Visible = false;
 
-			using (MovieMusicEmbedDlg f = new MovieMusicEmbedDlg())
+			using (EmbedMovieMusicDlg f = new EmbedMovieMusicDlg())
 			{
 				f.ShowDialog();
 			}

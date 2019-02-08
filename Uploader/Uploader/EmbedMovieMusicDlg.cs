@@ -9,30 +9,30 @@ using System.Windows.Forms;
 
 namespace Uploader
 {
-	public partial class MovieMusicEmbedDlg : Form
+	public partial class EmbedMovieMusicDlg : Form
 	{
-		public MovieMusicEmbedDlg()
+		public EmbedMovieMusicDlg()
 		{
 			InitializeComponent();
 		}
 
-		private void MovieMusicEmbedDlg_Load(object sender, EventArgs e)
+		private void EmbedMovieMusicDlg_Load(object sender, EventArgs e)
 		{
 			// noop
 		}
 
-		private void MovieMusicEmbedDlg_Shown(object sender, EventArgs e)
+		private void EmbedMovieMusicDlg_Shown(object sender, EventArgs e)
 		{
 			this.LoadData();
 			this.UpdateUi();
 		}
 
-		private void MovieMusicEmbedDlg_FormClosing(object sender, FormClosingEventArgs e)
+		private void EmbedMovieMusicDlg_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			// noop
 		}
 
-		private void MovieMusicEmbedDlg_FormClosed(object sender, FormClosedEventArgs e)
+		private void EmbedMovieMusicDlg_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			this.SaveData();
 		}

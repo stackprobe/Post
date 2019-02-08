@@ -511,28 +511,6 @@ static void MakeIndex(void)
 		}
 		if(
 			1 <= fileSize &&
-			EmbedMovieFlag &&
-			getIndex(MovieExts, getExt(file), (int (*)(char *, char *))_stricmp) != -1
-			)
-		{
-			line = addToken_x(line, xcout(
-				"<br/><video src=\"%s\" controls style=\"max-height: 75vh;\"></video>"
-				,lFHref
-				));
-		}
-		if(
-			1 <= fileSize &&
-			EmbedMusicFlag &&
-			getIndex(MusicExts, getExt(file), (int (*)(char *, char *))_stricmp) != -1
-			)
-		{
-			line = addToken_x(line, xcout(
-				"<br/><audio src=\"%s\" controls></audio>"
-				,lFHref
-				));
-		}
-		if(
-			1 <= fileSize &&
 			getIndex(ImageExts, getExt(file), (int (*)(char *, char *))_stricmp) != -1
 			)
 		{
@@ -546,6 +524,28 @@ static void MakeIndex(void)
 					,lFHref
 					));
 			}
+		}
+		else if(
+			1 <= fileSize &&
+			EmbedMovieFlag &&
+			getIndex(MovieExts, getExt(file), (int (*)(char *, char *))_stricmp) != -1
+			)
+		{
+			line = addToken_x(line, xcout(
+				"<br/><video src=\"%s\" controls style=\"max-height: 75vh;\"></video>"
+				,lFHref
+				));
+		}
+		else if(
+			1 <= fileSize &&
+			EmbedMusicFlag &&
+			getIndex(MusicExts, getExt(file), (int (*)(char *, char *))_stricmp) != -1
+			)
+		{
+			line = addToken_x(line, xcout(
+				"<br/><audio src=\"%s\" controls></audio>"
+				,lFHref
+				));
 		}
 		line = addToken(line, "</div>");
 		lines->AddElement(line);

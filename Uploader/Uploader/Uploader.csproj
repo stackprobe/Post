@@ -75,11 +75,11 @@
     <Compile Include="MainWin.Designer.cs">
       <DependentUpon>MainWin.cs</DependentUpon>
     </Compile>
-    <Compile Include="MovieMusicEmbedDlg.cs">
+    <Compile Include="EmbedMovieMusicDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MovieMusicEmbedDlg.Designer.cs">
-      <DependentUpon>MovieMusicEmbedDlg.cs</DependentUpon>
+    <Compile Include="EmbedMovieMusicDlg.Designer.cs">
+      <DependentUpon>EmbedMovieMusicDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,8 +93,8 @@
     <EmbeddedResource Include="MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MovieMusicEmbedDlg.resx">
-      <DependentUpon>MovieMusicEmbedDlg.cs</DependentUpon>
+    <EmbeddedResource Include="EmbedMovieMusicDlg.resx">
+      <DependentUpon>EmbedMovieMusicDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

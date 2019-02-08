@@ -1,6 +1,6 @@
 ﻿namespace Uploader
 {
-	partial class MovieMusicEmbedDlg
+	partial class EmbedMovieMusicDlg
 	{
 		/// <summary>
 		/// 必要なデザイナー変数です。
@@ -29,7 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieMusicEmbedDlg));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmbedMovieMusicDlg));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.MovieExtsLabel = new System.Windows.Forms.Label();
 			this.MovieExts = new System.Windows.Forms.TextBox();
@@ -135,7 +135,7 @@
 			this.EmbedMusicFlag.UseVisualStyleBackColor = true;
 			this.EmbedMusicFlag.CheckedChanged += new System.EventHandler(this.EmbedMusicFlag_CheckedChanged);
 			// 
-			// MovieMusicEmbedDlg
+			// EmbedMovieMusicDlg
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -148,13 +148,13 @@
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "MovieMusicEmbedDlg";
+			this.Name = "EmbedMovieMusicDlg";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Uploader / 設定 / 動画・音楽ファイルの埋め込み";
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MovieMusicEmbedDlg_FormClosing);
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MovieMusicEmbedDlg_FormClosed);
-			this.Load += new System.EventHandler(this.MovieMusicEmbedDlg_Load);
-			this.Shown += new System.EventHandler(this.MovieMusicEmbedDlg_Shown);
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmbedMovieMusicDlg_FormClosing);
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EmbedMovieMusicDlg_FormClosed);
+			this.Load += new System.EventHandler(this.EmbedMovieMusicDlg_Load);
+			this.Shown += new System.EventHandler(this.EmbedMovieMusicDlg_Shown);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.groupBox2.ResumeLayout(false);
