@@ -371,7 +371,6 @@
 			this.MovieMusicEmbedBtn.Size = new System.Drawing.Size(240, 31);
 			this.MovieMusicEmbedBtn.TabIndex = 27;
 			this.MovieMusicEmbedBtn.Text = "動画・音楽ファイルの埋め込み";
-			this.ToolTips.SetToolTip(this.MovieMusicEmbedBtn, "[画像の表示]をデフォルト値に戻します。");
 			this.MovieMusicEmbedBtn.UseVisualStyleBackColor = true;
 			this.MovieMusicEmbedBtn.Click += new System.EventHandler(this.MovieMusicEmbedBtn_Click);
 			// 

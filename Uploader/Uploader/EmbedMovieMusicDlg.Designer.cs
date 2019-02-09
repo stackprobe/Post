@@ -31,10 +31,12 @@
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmbedMovieMusicDlg));
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.MovieDefaultBtn = new System.Windows.Forms.Button();
 			this.MovieExtsLabel = new System.Windows.Forms.Label();
 			this.MovieExts = new System.Windows.Forms.TextBox();
 			this.EmbedMovieFlag = new System.Windows.Forms.CheckBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
+			this.MusicDefaultBtn = new System.Windows.Forms.Button();
 			this.MusicExtsLabel = new System.Windows.Forms.Label();
 			this.MusicExts = new System.Windows.Forms.TextBox();
 			this.EmbedMusicFlag = new System.Windows.Forms.CheckBox();
@@ -47,15 +49,29 @@
 			// 
 			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox1.Controls.Add(this.MovieDefaultBtn);
 			this.groupBox1.Controls.Add(this.MovieExtsLabel);
 			this.groupBox1.Controls.Add(this.MovieExts);
 			this.groupBox1.Controls.Add(this.EmbedMovieFlag);
 			this.groupBox1.Location = new System.Drawing.Point(12, 12);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(470, 120);
+			this.groupBox1.Size = new System.Drawing.Size(470, 140);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "動画の埋め込み";
+			// 
+			// MovieDefaultBtn
+			// 
+			this.MovieDefaultBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.MovieDefaultBtn.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.MovieDefaultBtn.Location = new System.Drawing.Point(367, 89);
+			this.MovieDefaultBtn.Name = "MovieDefaultBtn";
+			this.MovieDefaultBtn.Size = new System.Drawing.Size(97, 31);
+			this.MovieDefaultBtn.TabIndex = 3;
+			this.MovieDefaultBtn.Text = "デフォルト";
+			this.ToolTips.SetToolTip(this.MovieDefaultBtn, "[動画の埋め込み]をデフォルト値に戻します。");
+			this.MovieDefaultBtn.UseVisualStyleBackColor = true;
+			this.MovieDefaultBtn.Click += new System.EventHandler(this.MovieDefaultBtn_Click);
 			// 
 			// MovieExtsLabel
 			// 
@@ -93,15 +109,29 @@
 			// 
 			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox2.Controls.Add(this.MusicDefaultBtn);
 			this.groupBox2.Controls.Add(this.MusicExtsLabel);
 			this.groupBox2.Controls.Add(this.MusicExts);
 			this.groupBox2.Controls.Add(this.EmbedMusicFlag);
-			this.groupBox2.Location = new System.Drawing.Point(12, 138);
+			this.groupBox2.Location = new System.Drawing.Point(12, 158);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new System.Drawing.Size(470, 120);
+			this.groupBox2.Size = new System.Drawing.Size(470, 140);
 			this.groupBox2.TabIndex = 1;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "音楽の埋め込み";
+			// 
+			// MusicDefaultBtn
+			// 
+			this.MusicDefaultBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.MusicDefaultBtn.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.MusicDefaultBtn.Location = new System.Drawing.Point(367, 89);
+			this.MusicDefaultBtn.Name = "MusicDefaultBtn";
+			this.MusicDefaultBtn.Size = new System.Drawing.Size(97, 31);
+			this.MusicDefaultBtn.TabIndex = 3;
+			this.MusicDefaultBtn.Text = "デフォルト";
+			this.ToolTips.SetToolTip(this.MusicDefaultBtn, "[音楽の埋め込み]をデフォルト値に戻します。");
+			this.MusicDefaultBtn.UseVisualStyleBackColor = true;
+			this.MusicDefaultBtn.Click += new System.EventHandler(this.MusicDefaultBtn_Click);
 			// 
 			// MusicExtsLabel
 			// 
@@ -139,7 +169,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(494, 291);
+			this.ClientSize = new System.Drawing.Size(494, 321);
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.Font = new System.Drawing.Font("メイリオ", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -174,5 +204,7 @@
 		private System.Windows.Forms.TextBox MusicExts;
 		private System.Windows.Forms.CheckBox EmbedMusicFlag;
 		private System.Windows.Forms.ToolTip ToolTips;
+		private System.Windows.Forms.Button MovieDefaultBtn;
+		private System.Windows.Forms.Button MusicDefaultBtn;
 	}
 }

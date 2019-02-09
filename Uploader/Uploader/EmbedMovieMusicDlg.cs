@@ -79,5 +79,21 @@ namespace Uploader
 		{
 			this.UpdateUi();
 		}
+
+		private void MovieDefaultBtn_Click(object sender, EventArgs e)
+		{
+			this.EmbedMovieFlag.Checked = Gnd.I.DEFAULT_EMBEDMOVIEFLAG;
+			this.MovieExts.Text = Gnd.I.DEFAULT_MOVIEEXTS;
+
+			this.UpdateUi();
+		}
+
+		private void MusicDefaultBtn_Click(object sender, EventArgs e)
+		{
+			this.EmbedMusicFlag.Checked = Gnd.I.DEFAULT_EMBEDMUSICFLAG;
+			this.MusicExts.Text = Gnd.I.DEFAULT_MUSICEXTS;
+
+			this.UpdateUi();
+		}
 	}
 }

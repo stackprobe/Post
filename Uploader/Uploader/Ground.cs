@@ -26,7 +26,9 @@ namespace Uploader
 		public readonly string DEFAULT_UPLOADDIR = "upload";
 		public readonly long DEFAULT_SHOWEDIMAGETOTALSIZEMAX = 30000000;
 		public readonly string DEFAULT_IMAGEEXTS = "bmp.gif.jpg.jpeg.png";
+		public readonly bool DEFAULT_EMBEDMOVIEFLAG = true;
 		public readonly string DEFAULT_MOVIEEXTS = "avi.mp4.mpeg.mpg.webm";
+		public readonly bool DEFAULT_EMBEDMUSICFLAG = true;
 		public readonly string DEFAULT_MUSICEXTS = "mid.midi.mp3.wav.wma";
 
 		public readonly string LANG_E = "E";
@@ -134,9 +136,9 @@ namespace Uploader
 			this.ShowDownloadLinkFlag = false;
 			this.SortOrder = 0;
 			this.NoUpFaviconFlag = false;
-			this.EmbedMovieFlag = true;
+			this.EmbedMovieFlag = Gnd.I.DEFAULT_EMBEDMOVIEFLAG;
 			this.MovieExts = Gnd.I.DEFAULT_MOVIEEXTS;
-			this.EmbedMusicFlag = true;
+			this.EmbedMusicFlag = Gnd.I.DEFAULT_EMBEDMUSICFLAG;
 			this.MusicExts = Gnd.I.DEFAULT_MUSICEXTS;
 		}
 
