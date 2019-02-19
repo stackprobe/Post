@@ -146,7 +146,7 @@ namespace Uploader
 			{
 				ProcessStartInfo psi = new ProcessStartInfo();
 				psi.FileName = url;
-				psi.WorkingDirectory = Environment.GetEnvironmentVariable("TMP");
+				//psi.WorkingDirectory = Environment.GetEnvironmentVariable("TMP");
 				Process.Start(psi);
 			}
 			catch (Exception e)

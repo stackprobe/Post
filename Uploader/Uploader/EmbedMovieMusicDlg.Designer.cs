@@ -181,6 +181,7 @@
 			this.Name = "EmbedMovieMusicDlg";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Uploader / 設定 / 動画・音楽ファイルの埋め込み";
+			this.TopMost = true;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EmbedMovieMusicDlg_FormClosing);
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EmbedMovieMusicDlg_FormClosed);
 			this.Load += new System.EventHandler(this.EmbedMovieMusicDlg_Load);

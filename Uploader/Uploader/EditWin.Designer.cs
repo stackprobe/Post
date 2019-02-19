@@ -553,6 +553,7 @@
 			this.Name = "EditWin";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Uploader / 設定";
+			this.TopMost = true;
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.EditWin_FormClosed);
 			this.Load += new System.EventHandler(this.EditWin_Load);
 			this.Shown += new System.EventHandler(this.EditWin_Shown);
