@@ -33,8 +33,13 @@ void ErrorRes_417(void);
 #define LOGPOS() \
 	cout("%s (%d) %s\n", __FILE__, __LINE__, __FUNCTION__)
 
+// sync > @ cout_h
 void cout(char *format, ...);
 char *xcout(char *format, ...);
+char *vxcout(char *format, va_list marker);
+void coutLongText(char *text);
+void coutLongText_x(char *text);
+// < sync
 
 int hasArgs(int count);
 int argIs(char *spell);
