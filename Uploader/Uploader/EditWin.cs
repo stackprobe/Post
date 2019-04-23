@@ -167,65 +167,59 @@ namespace Uploader
 			try
 			{
 				string homeDir = Directory.GetCurrentDirectory();
-				string selDir = null;
+				string selDir;
 
-				try
 				{
-					using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+					string selPath = tb.Text;
+					selPath = Path.GetFullPath(selPath);
+
+					if (Directory.Exists(selPath))
+						selDir = selPath;
+					else
+						selDir = homeDir;
+				}
+
+				if (SaveLoadDialogs.SelectFolder(ref selDir, "フォルダを選択して下さい。"))
+				{
 					{
-						{
-							string selPath = tb.Text;
-							selPath = Path.GetFullPath(selPath);
+						string selPath = selDir;
 
-							if (Directory.Exists(selPath))
-								fbd.SelectedPath = selPath;
-							else
-								fbd.SelectedPath = homeDir;
+						if (selPath.StartsWith("\\\\"))
+						{
+							throw new Exception("ネットワークフォルダは使用できません");
+							//selPath = "(ネットワークフォルダは使用できません)";
+						}
+						if (3 < homeDir.Length) // ? not root-dir
+							if (selPath.StartsWith(homeDir + "\\", StringComparison.OrdinalIgnoreCase))
+								selPath = selPath.Substring(homeDir.Length + 1);
+
+						{
+							string tmpPath = JString.ToJString(selPath, true, false, false, true, 0, 300);
+							//tmpPath = tmpPath.Trim(); // moved
+
+							if (tmpPath != selPath) throw new Exception("Shift_JISに変換出来ない文字を含むパスは使用できません");
+							//if (tmpPath != selPath) selPath = "(Shift_JISに変換出来ない文字を含むパスは使用できません)";
+							//selPath = tmpPath;
 						}
 
-						fbd.Description = "フォルダを選択して下さい。";
-
-						if (fbd.ShowDialog() == DialogResult.OK) // using fbd
 						{
-							string selPath = fbd.SelectedPath;
+							string tmpPath = selPath.Trim();
 
-							if (selPath.StartsWith("\\\\"))
-							{
-								throw new Exception("ネットワークフォルダは使用できません");
-								//selPath = "(ネットワークフォルダは使用できません)";
-							}
-							if (3 < homeDir.Length) // ? not root-dir
-								if (selPath.StartsWith(homeDir + "\\", StringComparison.OrdinalIgnoreCase))
-									selPath = selPath.Substring(homeDir.Length + 1);
-
-							{
-								string tmpPath = JString.ToJString(selPath, true, false, false, true, 0, 300);
-								tmpPath = tmpPath.Trim();
-
-								//if (tmpPath != selPath) throw new Exception("Shift_JISに変換出来ない文字を含むパスは使用できません");
-								//if (tmpPath != selPath) selPath = "(Shift_JISに変換出来ない文字を含むパスは使用できません)";
-								selPath = tmpPath;
-							}
-
-							if (selPath == "")
-							{
-								throw new Exception("空文字列は使用できません");
-								//selPath = "(空文字列は使用できません)";
-							}
-							if (selPath == tb.Text) // ? 今設定されているフォルダを選択した。
-								return;
-
-							selDir = selPath;
+							if (tmpPath != selPath)
+								throw new Exception("空白の位置に問題があります");
 						}
+
+						if (selPath == "")
+						{
+							throw new Exception("空文字列は使用できません");
+							//selPath = "(空文字列は使用できません)";
+						}
+						if (selPath == tb.Text) // ? 今設定されているフォルダを選択した。
+							return;
+
+						selDir = selPath;
 					}
-				}
-				finally
-				{
-					Directory.SetCurrentDirectory(homeDir);
-				}
 
-				if (selDir != null)
-				{
 					if (MessageBox.Show(
 						"新しい アップロード先フォルダ が選択されました。\n" +
 						"\n" +
@@ -252,7 +246,7 @@ namespace Uploader
 					MessageBoxIcon.Warning
 					);
 
-				tb.Text = Gnd.I.DEFAULT_UPLOADDIR;
+				//tb.Text = Gnd.I.DEFAULT_UPLOADDIR;
 			}
 		}
 
