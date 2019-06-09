@@ -31,23 +31,6 @@ static char *ReadConfLine(FILE *fp)
 		return line;
 	}
 }
-static char *ReadTextToEnd(FILE *fp)
-{
-	char *line = (char *)memAlloc(RTTE_LENMAX + 1);
-	int index;
-
-	for(index = 0; index < RTTE_LENMAX; index++)
-	{
-		int chr = readChar(fp);
-
-		if(chr == EOF)
-			break;
-
-		line[index] = chr;
-	}
-	line[index] = '\0';
-	return line;
-}
 static int ToInt_x(char *line, int minval, int maxval)
 {
 	errorCase(maxval < minval);

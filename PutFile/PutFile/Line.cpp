@@ -13,20 +13,6 @@ void strz(char *&buffer, char *line)
 	memFree(buffer);
 	buffer = strx(line);
 }
-void strz_x(char *&buffer, char *line)
-{
-	memFree(buffer);
-	buffer = line;
-}
-
-char *getConstNullString(void)
-{
-	return "";
-}
-char *getNullString(void)
-{
-	return strx("");
-}
 
 autoList<char *> *tokenize(char *line, char *delimiters)
 {
@@ -54,12 +40,6 @@ autoList<char *> *tokenize(char *line, char *delimiters)
 
 	delete token;
 	return tokens;
-}
-autoList<char *> *tokenize_xc(char *line, char *delimiters)
-{
-	autoList<char *> *out = tokenize(line, delimiters);
-	memFree(line);
-	return out;
 }
 autoList<char *> *resTokenize(char *line, char *delimiters)
 {
@@ -299,14 +279,6 @@ char *replace(char *str, char *srcPtn, char *destPtn, int ignoreCase) // ret: st
 	return out;
 }
 
-int toUpper(int chr)
-{
-	if('a' <= chr && chr <= 'z')
-	{
-		chr += 'A' - 'a';
-	}
-	return chr;
-}
 int toLower(int chr)
 {
 	if('A' <= chr && chr <= 'Z')
@@ -366,28 +338,6 @@ char *addChar(char *buffer, int chr)
 	char *newBuffer = xcout("%s%c", buffer, chr);
 	memFree(buffer);
 	return newBuffer;
-}
-char *addLine(char *buffer, char *line)
-{
-	buffer = addToken(buffer, line);
-	buffer = addChar(buffer, '\n');
-	return buffer;
-}
-char *addLine_x(char *buffer, char *line)
-{
-	char *newBuffer = addLine(buffer, line);
-	memFree(line);
-	return newBuffer;
-}
-
-char *getEnd(char *str, int num)
-{
-	int len = strlen(str);
-	return str + len - m_min(num, len);
-}
-char *getEnd(char *str, char *ptn)
-{
-	return getEnd(str, strlen(ptn));
 }
 
 void toRangeToken(char *str, int minchr, int maxchr)

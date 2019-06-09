@@ -39,12 +39,6 @@ char *combine_cx(char *dir, char *file)
 	memFree(file);
 	return out;
 }
-char *combine_xc(char *dir, char *file)
-{
-	char *out = combine(dir, file);
-	memFree(dir);
-	return out;
-}
 char *getDir(char *path)
 {
 	path = strx(path);
@@ -71,12 +65,6 @@ char *getDir(char *path)
 		strz(path, ".");
 
 	return path;
-}
-char *getDir_x(char *path)
-{
-	char *out = getDir(path);
-	memFree(path);
-	return out;
 }
 char *getLocalPath(char *path)
 {
@@ -124,124 +112,15 @@ void addCwd(char *dir)
 	GetCwdStack()->AddElement(getCwd());
 	setCwd(dir);
 }
-void addCwd_x(char *dir)
-{
-	addCwd(dir);
-	memFree(dir);
-}
 void unaddCwd(void)
 {
 	setCwd_x(GetCwdStack()->UnaddElement());
-}
-
-// sync > @ My_mkdir
-
-static void My_mkdir_WrLog(char *message)
-{
-	cout("%s\n", message);
-
-#if 0
-	{
-		char *logFile = xcout("%s_MKDIR.log", getSelfFile());
-		FILE *logFp;
-
-		logFp = fileOpen(logFile, "at");
-		writeLine(logFp, message);
-		fileClose(logFp);
-
-		memFree(logFile);
-	}
-#endif
-}
-static void My_mkdir_WrLog_x(char *message)
-{
-	My_mkdir_WrLog(message);
-	memFree(message);
-}
-/*
-	2019.2.18
-	・WHTTR.exe(HTT_RPC)を起動する。
-		WHTTR.exeがHTT.exeを起動する。このとき...
-			WHTTR.exe起動時にWindowsDefenderのSmartScreenが表示されること。
-			AntiWindowsDefenderSmartScreen()によってHTT.exeがWHTTR.exeによって読み込み・削除・書き出しされること。
-	・WindowsDefenderのリアルタイム保護をオフにする。<-- 必須ではないかも。
-	・デスクトップをロックして放置する。
-	この手順で CreateDirectory, _mkdir が稀に失敗する。<-- 1分毎の空実行時の作業ディレクトリの作成。作成可能なはず。
-	失敗した場合 MD で1回リトライすれば成功する模様。
-	Sleepと5回のリトライは念の為。
-*/
-static int My_mkdir(char *dir) // ret: ? 失敗
-{
-#if 1
-	if(CreateDirectory(dir, NULL) == 0) // ? 失敗
-	{
-		My_mkdir_WrLog_x(xcout("CreateDirectory() failed \"%s\" %u @ %I64d", dir, GetLastError(), time(NULL)));
-		My_mkdir_WrLog("*1");
-
-		for(int c = 0; ; c++)
-		{
-			Sleep(100);
-			My_mkdir_WrLog("*2");
-
-			if(existDir(dir))
-				break;
-
-			My_mkdir_WrLog("*3");
-
-			if(5 <= c)
-			{
-				My_mkdir_WrLog("*3.5");
-				return 1;
-			}
-			My_mkdir_WrLog("*4");
-			Sleep(100);
-
-			{
-				char *command = xcout("MD \"%s\"", dir);
-				system(command);
-				memFree(command);
-			}
-		}
-		My_mkdir_WrLog("*5");
-	}
-	return 0;
-#elif 1
-	if(CreateDirectory(dir, NULL) == 0) // ? 失敗
-	{
-		return 1;
-	}
-	return 0;
-#else
-	if(_mkdir(dir)) // ? 失敗
-	{
-		return 1;
-	}
-	return 0;
-#endif
-}
-
-// < sync
-
-void createFile(char *file)
-{
-	errorCase(m_isEmpty(file));
-	fileClose(fileOpen(file, "wb"));
-}
-void createDir(char *dir)
-{
-	errorCase(m_isEmpty(dir));
-	errorCase(My_mkdir(dir)); // ? 失敗
 }
 
 void removeFile(char *file)
 {
 	errorCase(m_isEmpty(file));
 	remove(file);
-}
-void removeDir(char *dir)
-{
-	errorCase(m_isEmpty(dir));
-	_rmdir(dir);
 }
 void clearDir(char *dir)
 {
@@ -272,32 +151,6 @@ void fileMove(char *rFile, char *wFile)
 		"アップロード先フォルダ内に（書き込み禁止等の理由で）移動・削除出来ないフォルダ・ファイルが存在する可能性があります。"
 		); // ? 失敗
 }
-void fileCopy(char *rFile, char *wFile)
-{
-	remove(wFile); // anti rFile == wFile
-
-	FILE *rfp = fileOpen(rFile, "rb");
-	FILE *wfp = fileOpen(wFile, "wb");
-
-	__int64 rCount = getFileSize(rFile);
-
-	const int buffSize = 1000000;
-	uchar *buff = (uchar *)memAlloc(buffSize);
-
-	while(0 < rCount)
-	{
-		int rSize = (int)m_min(rCount, buffSize);
-
-		fileRead(rfp, buff, rSize);
-		fileWrite(wfp, buff, rSize);
-
-		rCount -= rSize;
-	}
-	memFree(buff);
-
-	fileClose(rfp);
-	fileClose(wfp);
-}
 
 char *getFullPath(char *path, char *baseDir)
 {
@@ -311,12 +164,6 @@ char *getFullPath(char *path, char *baseDir)
 	char *retPath = strx(path);
 	free(path);
 	return retPath;
-}
-char *getFullPath_xc(char *path, char *baseDir)
-{
-	char *out = getFullPath(path, baseDir);
-	memFree(path);
-	return out;
 }
 char *getLocal(char *path)
 {

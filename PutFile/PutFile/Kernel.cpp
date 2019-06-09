@@ -1,30 +1,5 @@
 #include "all.h"
 
-uint lastMemoryLoad; // 0 - 100, パーセント
-uint64 lastMemoryFree;
-uint64 lastMemorySize;
-uint64 lastPageFileFree;
-uint64 lastPageFileSize;
-uint64 lastVirtualFree;
-uint64 lastVirtualSize;
-uint64 lastExVirtualFree;
-
-void updateMemory(void)
-{
-	MEMORYSTATUSEX ms = { sizeof(MEMORYSTATUSEX) };
-
-	errorCase(!GlobalMemoryStatusEx(&ms)); // ? 失敗
-
-	lastMemoryLoad = (uint)ms.dwMemoryLoad;
-	lastMemoryFree = (uint64)ms.ullAvailPhys;
-	lastMemorySize = (uint64)ms.ullTotalPhys;
-	lastPageFileFree = (uint64)ms.ullAvailPageFile;
-	lastPageFileSize = (uint64)ms.ullTotalPageFile;
-	lastVirtualFree = (uint64)ms.ullAvailVirtual;
-	lastVirtualSize = (uint64)ms.ullTotalVirtual;
-	lastExVirtualFree = (uint64)ms.ullAvailExtendedVirtual;
-}
-
 uint64 lastDiskFree;
 uint64 lastDiskFree_real;
 uint64 lastDiskSize;

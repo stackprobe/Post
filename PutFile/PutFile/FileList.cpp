@@ -81,8 +81,3 @@ void updateFindData(char *path)
 	errorCase(h == -1); // ? Ž¸”s
 	_findclose(h);
 }
-time_t getFileWriteTime(char *file)
-{
-	updateFindData(file);
-	return lastFindData.time_write;
-}

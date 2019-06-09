@@ -49,15 +49,6 @@ __int64 getFileSize(char *file)
 	fileClose(fp);
 	return size;
 }
-void setFileSize(char *file, __int64 size)
-{
-	FILE *fp = fileOpen(file, "ab");
-	int fh = _fileno(fp);
-
-	errorCase(_chsize_s(fh, size)); // ? Ž¸”s
-
-	fileClose(fp);
-}
 
 int readChar(FILE *fp)
 {
@@ -167,27 +158,13 @@ void writeLine(FILE *fp, char *line)
 	writeToken(fp, line);
 	writeChar(fp, '\n');
 }
-void writeLine_x(FILE *fp, char *line)
-{
-	writeLine(fp, line);
-	memFree(line);
-}
 void writeLine(char *file, char *line)
 {
 	FILE *fp = fileOpen(file, "wt");
 	writeLine(fp, line);
 	fileClose(fp);
 }
-void writeLine_cx(char *file, char *line)
-{
-	writeLine(file, line);
-	memFree(line);
-}
 
-void fileSeek(FILE *fp, int origin, __int64 offset) // origin, offset ‚Ì•À‚Ñ‚Í fseek() ‚Æ‹t
-{
-	errorCase(_fseeki64(fp, offset, origin)); // ? Ž¸”s
-}
 void fileRead(FILE *fp, void *block, int size)
 {
 	if(size)
@@ -209,12 +186,6 @@ void readBlock(char *file, void *block, int size)
 {
 	FILE *fp = fileOpen(file, "rb");
 	fileRead(fp, block, size);
-	fileClose(fp);
-}
-void writeBlock(char *file, void *block, int size, int addMode)
-{
-	FILE *fp = fileOpen(file, addMode ? "ab" : "wb");
-	fileWrite(fp, block ,size);
 	fileClose(fp);
 }
 

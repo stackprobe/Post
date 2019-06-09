@@ -4,18 +4,13 @@
 
 #include "System.h"
 #include "autoList.h"
-#include "autoTable.h"
 #include "MemAlloc.h"
 #include "Line.h"
 #include "File.h"
 #include "FileStream.h"
 #include "Tools.h"
 #include "Kernel.h"
-#include "Mutex.h"
 #include "FileList.h"
-#include "sha512.h"
-#include "Thread.h"
-#include "camellia.h"
 
 #include "_Header.h"
 #include "_RecvEnd.h"

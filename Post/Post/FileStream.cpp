@@ -177,15 +177,3 @@ void fileWrite(FILE *fp, void *block, int size)
 		errorCase(ferror(fp));
 	}
 }
-
-int fileReadMax(FILE *fp, void *block, int size)
-{
-	if(size)
-	{
-		int retval = fread(block, 1, size, fp);
-		errorCase(retval < 0 || size < retval);
-		errorCase(ferror(fp));
-		return retval;
-	}
-	return 0;
-}

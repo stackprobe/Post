@@ -13,14 +13,6 @@ public:
 		this->ListSize = 0;
 		this->List = (Element_t *)memAlloc(0);
 	}
-	autoList(int buffer_size)
-	{
-		errorCase(buffer_size < 0 || INT_MAX / sizeof(Element_t) < buffer_size);
-
-		this->Count = 0;
-		this->ListSize = buffer_size;
-		this->List = (Element_t *)memAlloc(buffer_size * sizeof(Element_t));
-	}
 	autoList(Element_t *list_bind, int count)
 	{
 		errorCase(!list_bind);
@@ -39,16 +31,6 @@ public:
 		memFree(this->List);
 	}
 
-	autoList<Element_t> *GetClone()
-	{
-		autoList<Element_t> *list_ret = new autoList<Element_t>();
-
-		list_ret->Count = this->Count;
-		list_ret->ListSize = this->Count;
-		list_ret->List = (Element_t *)memClone(this->List, this->Count * sizeof(Element_t));
-
-		return list_ret;
-	}
 	Element_t *UnbindBuffer()
 	{
 		Element_t *list_ret = this->List;
@@ -59,17 +41,7 @@ public:
 
 		return list_ret;
 	}
-	void Change(autoList<Element_t> *list)
-	{
-		m_swap(this->Count, list->Count, int);
-		m_swap(this->ListSize, list->ListSize, int);
-		m_swap(this->List, list->List, Element_t *);
-	}
 
-	void Clear()
-	{
-		this->Count = 0;
-	}
 	int GetCount()
 	{
 		return this->Count;
@@ -146,46 +118,6 @@ public:
 		}
 		return element;
 	}
-	Element_t FastDesertElement(int index)
-	{
-		errorCase(index < 0 || this->Count <= index);
-
-		Element_t element = this->List[index];
-
-		this->Count--;
-		this->List[index] = this->List[this->Count];
-
-		return element;
-	}
-	void RemoveElements(int start, int count)
-	{
-		errorCase(start < 0 || this->Count < start);
-		errorCase(count < 0 || this->Count - start < count);
-
-		int index;
-
-		for(index = start; index + count < this->Count; index++)
-		{
-			this->List[index] = this->List[index + count];
-		}
-		this->Count = index;
-	}
-	autoList<Element_t> *CopyRange(int start, int count)
-	{
-		errorCase(start < 0 || this->Count < start);
-		errorCase(count < 0 || this->Count - start < count);
-
-		return new autoList<Element_t>(
-			(Element_t *)memClone(this->List + start, count * sizeof(Element_t)),
-			count
-			);
-	}
-	autoList<Element_t> *DesertRange(int start, int count)
-	{
-		autoList<Element_t> *retList = this->CopyRange(start, count);
-		this->RemoveElements(start, count);
-		return retList;
-	}
 
 	void CallAllElement(void (*func)(Element_t e))
 	{
@@ -193,11 +125,6 @@ public:
 		{
 			func(this->GetElement(index));
 		}
-	}
-	void Clear(void (*func)(Element_t e))
-	{
-		this->CallAllElement(func);
-		this->Clear();
 	}
 
 	void AddElements(Element_t *list, int count)
@@ -223,31 +150,6 @@ public:
 		delete list;
 	}
 
-	void UnaddElements(Element_t *list, int count)
-	{
-		errorCase(!list);
-		errorCase(count < 0 || this->Count < count);
-
-		this->Count -= count;
-
-		for(int index = 0; index < count; index++)
-		{
-			list[index] = this->List[this->Count + index];
-		}
-	}
-
-	void InsertElements(int insPos, Element_t *list, int count) // fixme: ’x‚¢
-	{
-		for(int index = 0; index < count; index++)
-		{
-			this->InsertElement(insPos + index, list[index]);
-		}
-	}
-	void InsertElements(int insPos, autoList<Element_t> *list)
-	{
-		this->InsertElements(insPos, list->ElementAt(0), list->GetCount());
-	}
-
 	void Swap(int index1, int index2)
 	{
 		errorCase(index1 < 0 || this->Count <= index1);
@@ -268,51 +170,6 @@ public:
 			this->Swap(i, j);
 			i++;
 			j--;
-		}
-	}
-
-	void PutElement(int index, Element_t element, Element_t defaultElement)
-	{
-		errorCase(index < 0);
-
-		if(this->Count <= index)
-		{
-			while(this->Count < index)
-			{
-				this->AddElement(defaultElement);
-			}
-			this->AddElement(element);
-		}
-		else
-			this->SetElement(index, element);
-	}
-	Element_t RefElement(int index, Element_t defaultElement)
-	{
-		errorCase(index < 0);
-
-		if(index < this->Count)
-		{
-			return this->GetElement(index);
-		}
-		return defaultElement;
-	}
-
-	int UnaddRepeat(Element_t e)
-	{
-		int num = 0;
-
-		while(this->Count && this->List[this->Count - 1] == e)
-		{
-			this->Count--;
-			num++;
-		}
-		return num;
-	}
-	void AddRepeat(Element_t e, int num)
-	{
-		for(int c = 0; c < num; c++)
-		{
-			this->AddElement(e);
 		}
 	}
 
@@ -362,32 +219,6 @@ public:
 			}
 		}
 #endif
-	}
-
-	int BinSearch(int (*compFunc)(Element_t, Element_t), Element_t e)
-	{
-		int p = 0;
-		int q = this->Count;
-
-		while(p < q)
-		{
-			int mid = (p + q) / 2;
-			int comp = compFunc(this->List[mid], e);
-
-			if(comp < 0)
-			{
-				p = mid + 1;
-			}
-			else if(0 < comp)
-			{
-				q = mid;
-			}
-			else
-			{
-				return mid;
-			}
-		}
-		return -1; // not found
 	}
 };
 

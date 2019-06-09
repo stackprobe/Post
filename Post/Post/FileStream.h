@@ -27,5 +27,3 @@ void writeLine_cx(char *file, char *line);
 void fileSeek(FILE *fp, int origin, __int64 offset);
 void fileRead(FILE *fp, void *block, int size);
 void fileWrite(FILE *fp, void *block, int size);
-
-int fileReadMax(FILE *fp, void *block, int size);

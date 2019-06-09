@@ -3,23 +3,8 @@
 int BatchMode;
 int SilentMode;
 
-static oneObject(autoList<void (*)(void)>, new autoList<void (*)(void)>(), GetFinalizers)
-
-void addFinalizer(void (*func)(void))
-{
-	GetFinalizers()->AddElement(func);
-}
-void (*unaddFinalizer(void))(void)
-{
-	return GetFinalizers()->UnaddElement();
-}
-
 void termination(int errorlevel)
 {
-	while(GetFinalizers()->GetCount())
-	{
-		GetFinalizers()->UnaddElement()();
-	}
 	_fcloseall();
 
 	if(RemoveSendFileAtTermination)
@@ -202,22 +187,6 @@ void coutLongText_x(char *text)
 
 static int ArgIndex = 1;
 
-int hasArgs(int count)
-{
-	return count <= __argc - ArgIndex;
-}
-int argIs(char *spell)
-{
-	if(ArgIndex < __argc)
-	{
-		if(!_stricmp(__argv[ArgIndex], spell))
-		{
-			ArgIndex++;
-			return 1;
-		}
-	}
-	return 0;
-}
 char *getArg(int index)
 {
 	errorCase(index < 0 || __argc - ArgIndex <= index);
@@ -229,15 +198,6 @@ char *nextArg(void)
 
 	ArgIndex++;
 	return arg;
-}
-int getArgIndex(void)
-{
-	return ArgIndex;
-}
-void setArgIndex(int index)
-{
-	errorCase(index < 0 || __argc < index); // index == __argc は全部読み終わった状態
-	ArgIndex = index;
 }
 
 char *getSelfFile(void)
@@ -262,75 +222,4 @@ char *getSelfDir(void)
 		dirBuff = getDir(getSelfFile());
 
 	return dirBuff;
-}
-
-#if 0 // 廃止 @ 2017.4.18
-char *getTempRtDir(void)
-{
-#if 1
-	return HomeDir;
-#else
-	static char *dir;
-
-	if(!dir)
-	{
-		dir = getenv("TMP");
-
-		if(!dir)
-			dir = getenv("TEMP");
-
-		errorCase(!dir);
-		errorCase(!existDir(dir));
-		dir = getFullPath(dir, getSelfDir()); // TMP, TEMP はフルパスだと思うけど、念のため。あと dir 複製のため。
-	}
-	return dir;
-#endif
-}
-char *makeTempPath(char *suffix)
-{
-	for(; ; )
-	{
-		char *pw = makePw36();
-		char *path = combine_cx(getTempRtDir(), xcout("%s%s", pw, suffix));
-		memFree(pw);
-
-		if(!existPath(path))
-			return path;
-
-		memFree(path);
-	}
-}
-char *makeTempFile(char *suffix)
-{
-	char *out = makeTempPath(suffix);
-	createFile(out);
-	return out;
-}
-char *makeTempDir(char *suffix)
-{
-	char *out = makeTempPath(suffix);
-	createDir(out);
-	return out;
-}
-#endif
-
-double now(void)
-{
-	return clock() / (double)CLOCKS_PER_SEC;
-}
-char *getTimeStamp(time_t t) // t: 0 == 現時刻
-{
-	static char timeStamp[25];
-	char *p;
-
-	if(!t)
-		t = time(NULL);
-
-	p = ctime(&t); // "Wed Jan 02 02:03:55 1980\n"
-
-	if(!p) // ? invalid t
-		p = "Thu Jan 01 00:00:00 1970";
-
-	memcpy(timeStamp, p, 24);
-	return timeStamp; // "Wed Jan 02 02:03:55 1980"
 }

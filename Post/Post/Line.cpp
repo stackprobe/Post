@@ -13,78 +13,12 @@ void strz(char *&buffer, char *line)
 	memFree(buffer);
 	buffer = strx(line);
 }
-void strz_x(char *&buffer, char *line)
-{
-	memFree(buffer);
-	buffer = line;
-}
 char *n2x(char *str)
 {
 	if(!str)
 		str = strx("");
 
 	return str;
-}
-
-char *getConstNullString(void)
-{
-	return "";
-}
-char *getNullString(void)
-{
-	return strx("");
-}
-
-autoList<char *> *tokenize(char *line, char *delimiters)
-{
-	autoList<char *> *tokens = new autoList<char *>();
-	autoList<char> *token = new autoList<char>();
-
-	for(char *p = line; *p; p++)
-	{
-		char *d;
-
-		for(d = delimiters; *d; d++)
-			if(*d == *p)
-				break;
-
-		if(*d)
-		{
-			token->AddElement('\0');
-			tokens->AddElement(token->UnbindBuffer());
-		}
-		else
-			token->AddElement(*p);
-	}
-	token->AddElement('\0');
-	tokens->AddElement(token->UnbindBuffer());
-
-	delete token;
-	return tokens;
-}
-char *untokenize(autoList<char *> *tokens, char *separator)
-{
-	autoList<char> *buffer = new autoList<char>();
-
-	for(int index = 0; index < tokens->GetCount(); index++)
-	{
-		char *token = tokens->GetElement(index);
-
-		if(index)
-			buffer->AddElements(separator, strlen(separator));
-
-		buffer->AddElements(token, strlen(token));
-	}
-	buffer->AddElement('\0');
-	char *line = buffer->UnbindBuffer();
-	delete buffer;
-	return line;
-}
-char *untokenize_xc(autoList<char *> *tokens, char *separator)
-{
-	char *out = untokenize(tokens, separator);
-	releaseList(tokens, (void (*)(char *))memFree);
-	return out;
 }
 
 #define CB_MINSIZE 16
@@ -194,14 +128,6 @@ void trim(char *line, int chr)
 	trimSequ(line, chr);
 }
 
-char *findMbsChar(char *line, int chr)
-{
-	for(char *p = line; *p; mbcInc(p))
-		if(*p == chr)
-			return p;
-
-	return NULL; // not found
-}
 void replaceMbsChar(char *line, int chr1, int chr2)
 {
 	for(char *p = line; *p; mbcInc(p))
@@ -243,14 +169,6 @@ char *replace(char *str, char *srcPtn, char *destPtn, int ignoreCase) // ret: st
 	return out;
 }
 
-int toUpper(int chr)
-{
-	if('a' <= chr && chr <= 'z')
-	{
-		chr += 'A' - 'a';
-	}
-	return chr;
-}
 int toLower(int chr)
 {
 	if('A' <= chr && chr <= 'Z')
@@ -325,53 +243,7 @@ char *addToken(char *buffer, char *token)
 	memFree(buffer);
 	return newBuffer;
 }
-char *addToken_x(char *buffer, char *token)
-{
-	char *newBuffer = addToken(buffer, token);
-	memFree(token);
-	return newBuffer;
-}
-char *addChar(char *buffer, int chr)
-{
-	char *newBuffer = xcout("%s%c", buffer, chr);
-	memFree(buffer);
-	return newBuffer;
-}
-char *addLine(char *buffer, char *line)
-{
-	buffer = addToken(buffer, line);
-	buffer = addChar(buffer, '\n');
-	return buffer;
-}
-char *addLine_x(char *buffer, char *line)
-{
-	char *newBuffer = addLine(buffer, line);
-	memFree(line);
-	return newBuffer;
-}
 
-char *getEnd(char *str, int num)
-{
-	int len = strlen(str);
-	return str + len - m_min(num, len);
-}
-char *getEnd(char *str, char *ptn)
-{
-	return getEnd(str, strlen(ptn));
-}
-
-int isRangeToken(char *token, int minchr, int maxchr)
-{
-	for(char *p = token; *p; p++)
-		if(m_isRange(*p, minchr, maxchr) == 0)
-			return 0;
-
-	return 1;
-}
-int isAsciiToken(char *token)
-{
-	return isRangeToken(token, '\x21', '\x7e');
-}
 void toRangeToken(char *token, int minchr, int maxchr, int subchr)
 {
 	for(char *p = token; *p; p++)

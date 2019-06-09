@@ -80,15 +80,11 @@
     <ClCompile Include="all.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="camellia.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="FileList.cpp" />
     <ClCompile Include="FileStream.cpp" />
     <ClCompile Include="Kernel.cpp" />
     <ClCompile Include="Line.cpp" />
-    <ClCompile Include="Mutex.cpp" />
-    <ClCompile Include="sha512.cpp" />
-    <ClCompile Include="Thread.cpp" />
     <ClCompile Include="Tools.cpp" />
     <ClCompile Include="MemAlloc.cpp" />
     <ClCompile Include="System.cpp" />
@@ -102,8 +98,6 @@
   <ItemGroup>
     <ClInclude Include="all.h" />
     <ClInclude Include="autoList.h" />
-    <ClInclude Include="autoTable.h" />
-    <ClInclude Include="camellia.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="File.h" />
     <ClInclude Include="FileList.h" />
@@ -111,10 +105,7 @@
     <ClInclude Include="Kernel.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="MemAlloc.h" />
-    <ClInclude Include="Mutex.h" />
-    <ClInclude Include="sha512.h" />
     <ClInclude Include="System.h" />
-    <ClInclude Include="Thread.h" />
     <ClInclude Include="Tools.h" />
     <ClInclude Include="_Common.h" />
     <ClInclude Include="_Config.h" />
