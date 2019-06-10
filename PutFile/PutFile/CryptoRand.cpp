@@ -17,7 +17,7 @@ void getCryptoBlock_MS(uchar *buffer, int size)
 	CryptReleaseContext(hp, 0);
 }
 
-#define BUFFERSIZE 65536
+#define BUFFERSIZE 1024
 
 int getCryptoByte(void)
 {
