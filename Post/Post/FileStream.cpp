@@ -110,6 +110,10 @@ char *readLine(char *file, int lenmax)
 	FILE *fp = fileOpen(file, "rt");
 	char *line = readLine(fp, lenmax);
 	fileClose(fp);
+
+	if(!line)
+		line = strx("");
+
 	return line;
 }
 

@@ -92,6 +92,10 @@ char *readLine(char *file)
 	FILE *fp = fileOpen(file, "rt");
 	char *line = readLine(fp);
 	fileClose(fp);
+
+	if(!line)
+		line = strx("");
+
 	return line;
 }
 char *neReadLine(FILE *fp)
