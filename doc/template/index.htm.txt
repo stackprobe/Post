@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
-<title>ŠÈˆÕƒAƒbƒvƒ[ƒ_[</title>
+<title>ç°¡æ˜“ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ€ãƒ¼</title>
 <style>
 
 body {
@@ -44,13 +44,13 @@ a:hover {
 <body>
 <form method="post" action="/" accept-charset="UTF-8" enctype="multipart/form-data">
 <div><input type="file" name="file" size="100"/>$(password)$(no-overwrite)</div>
-<div><input type="submit" value="ƒAƒbƒvƒ[ƒh / ƒŠƒXƒgXV"/></div>
+<div><input type="submit" value="ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ / ãƒªã‚¹ãƒˆæ›´æ–°"/></div>
 </form>
 <hr/>
 $(uploaded-file-list)
 <hr/>
-<div>ƒtƒ@ƒCƒ‹”: $(uploaded-file-num) ŒÂ@/@ƒtƒ@ƒCƒ‹ƒTƒCƒY‡Œv: $(uploaded-file-total-size) bytes</div>
-<div class="f-option">‚ ‚Æ $(file-num-free) ŒÂ‚Ìƒtƒ@ƒCƒ‹‚ğƒAƒbƒvƒ[ƒh‚Å‚«‚Ü‚·B‚ ‚Æ $(dir-free) ƒoƒCƒg‚Ì—Ìˆæ‚ªg—p‚Å‚«‚Ü‚·B</div>
+<div>ãƒ•ã‚¡ã‚¤ãƒ«æ•°: $(uploaded-file-num) å€‹ã€€/ã€€ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºåˆè¨ˆ: $(uploaded-file-total-size) bytes</div>
+<div class="f-option">ã‚ã¨ $(file-num-free) å€‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ã§ãã¾ã™ã€‚ã‚ã¨ $(dir-free) ãƒã‚¤ãƒˆã®é ˜åŸŸãŒä½¿ç”¨ã§ãã¾ã™ã€‚</div>
 <br/>
 <br/>
 <br/>

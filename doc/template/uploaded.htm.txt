@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
 <meta http-equiv="refresh" content="2; URL=/">
-<title>�ȈՃA�b�v���[�_�[</title>
+<title>簡易アップローダー</title>
 <style>
 
 body {
@@ -35,9 +35,9 @@ a:hover {
 <body>
 <table>
 <tr>
-<td>���N�G�X�g�̏����ƃ��X�g�̍X�V���������܂����B<br/>
-���b�ȓ��Ƀ��X�g�ɖ߂�܂��B<br/>
-���܂Ōo���Ă��߂�Ȃ��Ƃ���<a href="/">����</a>���N���b�N���ĉ������B<br/></td>
+<td>リクエストの処理とリストの更新が完了しました。<br/>
+数秒以内にリストに戻ります。<br/>
+いつまで経っても戻らないときは<a href="/">ここ</a>をクリックして下さい。<br/></td>
 </tr>
 </table>
 </body>

@@ -1,49 +1,49 @@
 ==== Post.exe spec memo ====
 
 
-ŽÀs•û–@
+å®Ÿè¡Œæ–¹æ³•
 
-	Post.exe ƒ†[ƒU[ƒvƒƒOƒ‰ƒ€
+	Post.exe ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
-		ƒ†[ƒU[ƒvƒƒOƒ‰ƒ€
-			ƒ|ƒXƒgƒŠƒNƒGƒXƒg‚ðŽóM‚µ‚Äƒp[ƒX‚µ‚½Œã‚P“x‚¾‚¯ŒÄ‚Ño‚·ƒvƒƒOƒ‰ƒ€‚ÌƒpƒX
-			â‘ÎƒpƒX‚Ü‚½‚Í‘Š‘ÎƒpƒX
-			‘Š‘ÎƒpƒX‚Ìê‡A–{ƒvƒƒOƒ‰ƒ€‚ª‘¶Ý‚·‚éƒfƒBƒŒƒNƒgƒŠ‚©‚ç‚Ì‘Š‘ÎƒpƒX‚Æ‚È‚éB
+		ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+			ãƒã‚¹ãƒˆãƒªã‚¯ã‚¨ã‚¹ãƒˆã‚’å—ä¿¡ã—ã¦ãƒ‘ãƒ¼ã‚¹ã—ãŸå¾Œï¼‘åº¦ã ã‘å‘¼ã³å‡ºã™ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ãƒ‘ã‚¹
+			çµ¶å¯¾ãƒ‘ã‚¹ã¾ãŸã¯ç›¸å¯¾ãƒ‘ã‚¹
+			ç›¸å¯¾ãƒ‘ã‚¹ã®å ´åˆã€æœ¬ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãŒå­˜åœ¨ã™ã‚‹ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã‚‰ã®ç›¸å¯¾ãƒ‘ã‚¹ã¨ãªã‚‹ã€‚
 
 
-ŽÀsŽž‚ÉƒJƒŒƒ“ƒg‚É‘¶Ý‚·‚×‚«ƒtƒ@ƒCƒ‹
+å®Ÿè¡Œæ™‚ã«ã‚«ãƒ¬ãƒ³ãƒˆã«å­˜åœ¨ã™ã¹ããƒ•ã‚¡ã‚¤ãƒ«
 
 	IP.httdat
 	Recv.httdat
 	Send.httdat
 
 
-ƒ†[ƒU[ƒvƒƒOƒ‰ƒ€
+ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
 
-	ŽÀsŽž‚ÌƒJƒŒƒ“ƒg‚É‘¶Ý‚·‚éƒtƒ@ƒCƒ‹
+	å®Ÿè¡Œæ™‚ã®ã‚«ãƒ¬ãƒ³ãƒˆã«å­˜åœ¨ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
 
-		IP.httdat     ... IPƒAƒhƒŒƒX
-		Recv.httdat   ... ‹ó‚Ìƒtƒ@ƒCƒ‹
-		Send.httdat   ... ‹ó‚Ìƒtƒ@ƒCƒ‹
-		Tight.httdat  ... ‹ó‚Ìƒtƒ@ƒCƒ‹ (‘¶Ý‚µ‚È‚¢ê‡‚à‚ ‚é)
-		Header.httdat ... ƒŠƒNƒGƒXƒgƒwƒbƒ_[, (‘OŒã‚Ì‹ó”’œ‹Ž, •¡”sƒtƒB[ƒ‹ƒh‚ÌŒ‹‡, ”ñASCII•¶Žš‚Ì‹¸³)Ï‚Ý
+		IP.httdat     ... IPã‚¢ãƒ‰ãƒ¬ã‚¹
+		Recv.httdat   ... ç©ºã®ãƒ•ã‚¡ã‚¤ãƒ«
+		Send.httdat   ... ç©ºã®ãƒ•ã‚¡ã‚¤ãƒ«
+		Tight.httdat  ... ç©ºã®ãƒ•ã‚¡ã‚¤ãƒ« (å­˜åœ¨ã—ãªã„å ´åˆã‚‚ã‚ã‚‹)
+		Header.httdat ... ãƒªã‚¯ã‚¨ã‚¹ãƒˆãƒ˜ãƒƒãƒ€ãƒ¼, (å‰å¾Œã®ç©ºç™½é™¤åŽ», è¤‡æ•°è¡Œãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®çµåˆ, éžASCIIæ–‡å­—ã®çŸ¯æ­£)æ¸ˆã¿
 
-		ƒp[ƒg‚Ì”‚¾‚¯ ...
+		ãƒ‘ãƒ¼ãƒˆã®æ•°ã ã‘ ...
 
-			[ƒp[ƒg–¼].body.httdat ...
+			[ãƒ‘ãƒ¼ãƒˆå].body.httdat ...
 
-				ƒp[ƒg‚Ìƒf[ƒ^•”
-				ASCII•¶Žš—ñ‚É‹¸³‚³‚ê‚éB
+				ãƒ‘ãƒ¼ãƒˆã®ãƒ‡ãƒ¼ã‚¿éƒ¨
+				ASCIIæ–‡å­—åˆ—ã«çŸ¯æ­£ã•ã‚Œã‚‹ã€‚
 
-			[ƒp[ƒg–¼].filename.httdat ...
+			[ãƒ‘ãƒ¼ãƒˆå].filename.httdat ...
 
-				ƒp[ƒg‚Ìƒtƒ@ƒCƒ‹–¼
-				‚±‚Ìƒp[ƒg‚ªuƒtƒ@ƒCƒ‹v‚Å‚È‚¯‚ê‚Îì¬‚³‚ê‚È‚¢B(”ñƒtƒ@ƒCƒ‹‚Í filename="" ‚ª–³‚¢)
-				ƒ[ƒJƒ‹–¼‚Å‚ ‚é–Í—lB”O‚Ì‚½‚ß getLocal ‚Í’Ê‚·B
-				•¶ŽšƒR[ƒh UTF-8 (ƒtƒH[ƒ€‚Ì accept-charset ‚ÉˆË‘¶H)
-				•¶Žš—ñEƒpƒX–¼‚Æ‚µ‚Ä³‚µ‚¢‚©–¢ƒ`ƒFƒbƒNB
+				ãƒ‘ãƒ¼ãƒˆã®ãƒ•ã‚¡ã‚¤ãƒ«å
+				ã“ã®ãƒ‘ãƒ¼ãƒˆãŒã€Œãƒ•ã‚¡ã‚¤ãƒ«ã€ã§ãªã‘ã‚Œã°ä½œæˆã•ã‚Œãªã„ã€‚(éžãƒ•ã‚¡ã‚¤ãƒ«ã¯ filename="" ãŒç„¡ã„)
+				ãƒ­ãƒ¼ã‚«ãƒ«åã§ã‚ã‚‹æ¨¡æ§˜ã€‚å¿µã®ãŸã‚ getLocal ã¯é€šã™ã€‚
+				æ–‡å­—ã‚³ãƒ¼ãƒ‰ UTF-8 (ãƒ•ã‚©ãƒ¼ãƒ ã® accept-charset ã«ä¾å­˜ï¼Ÿ)
+				æ–‡å­—åˆ—ãƒ»ãƒ‘ã‚¹åã¨ã—ã¦æ­£ã—ã„ã‹æœªãƒã‚§ãƒƒã‚¯ã€‚
 
-	‚·‚é‚×‚«‚±‚Æ
+	ã™ã‚‹ã¹ãã“ã¨
 
-		Send.httdat ‚É‰ž“šƒf[ƒ^‚ð‘‚«o‚·B
+		Send.httdat ã«å¿œç­”ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã™ã€‚
 
