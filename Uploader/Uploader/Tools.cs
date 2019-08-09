@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Uploader
 {
-	public class Tools
+	public static class Tools
 	{
 		public static readonly Encoding ENCODING_SJIS = Encoding.GetEncoding(932);
 
@@ -204,7 +204,7 @@ namespace Uploader
 		// < sync
 	}
 
-	public class EventSet
+	public static class EventSet
 	{
 		[DllImport("kernel32.dll")]
 		private static extern IntPtr CreateEvent(IntPtr lpEventAttributes, bool bManualReset, bool bInitialState, string lpName);

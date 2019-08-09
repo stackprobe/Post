@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Uploader
 {
-	public class JString
+	public static class JString
 	{
 		/// <summary>
 		/// CR, CR-LF, LF -> LF
