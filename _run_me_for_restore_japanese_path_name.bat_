@@ -1,1 +1,2 @@
+REN doc\upload\[Japanese-path-name]_0001.txt ここにアップロードしたファイルが置かれます.txt
 REN [Japanese-path-name]_0001.txt 外部依存.txt
