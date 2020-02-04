@@ -29,10 +29,17 @@ static int ParseChunkSize(void) // ret: ? 受信完了
 		if(p)
 			*p = '\0'; // CHUNK_EXTENSION の排除
 	}
+
 	__int64 chunkSize = hex2i64_x(chunkLine);
 
 	int retval = 0;
 	__int64 endPos = -1;
+
+	// CHUNK_TRAILER を読んでいない。XXX
+
+	// XXX
+	// Chunked-Body の最後の CR-LF 又は CHUNK_TRAILER を１バイトでも受信すると、
+	// 下の if(!feof(fp)) に入ってしまい、応答を開始してしまう。
 
 	if(!feof(fp)) // ? チャンクサイズ受信完了
 	{
@@ -65,6 +72,8 @@ static int ParseChunkSize(void) // ret: ? 受信完了
 }
 int IsRecvEnded(void)
 {
+	int resizedCount = 0;
+
 restart:
 	RecvFinalSize = s2i64_x(n2x(readLine(RECVFINALSIZE_FILE)));
 
@@ -78,7 +87,13 @@ restart:
 		return 1;
 
 	if(PCS_Resized)
-		goto restart;
+	{
+		resizedCount++;
 
+		if(2 <= resizedCount)
+			cout("[Chunk]IRE_resizedCount: %d\n", resizedCount);
+
+		goto restart;
+	}
 	return 0;
 }
