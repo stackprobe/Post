@@ -10,8 +10,13 @@ static void CheckReqContentLength(__int64 size)
 		error();
 	}
 }
+
+static int PCS_Resized;
+
 static int ParseChunkSize(void) // ret: ? 受信完了
 {
+	PCS_Resized = 0;
+
 	FILE *fp = fileOpen(RECV_FILE, "rb");
 	fileSeek(fp, SEEK_SET, RecvFinalSize);
 
@@ -53,11 +58,14 @@ static int ParseChunkSize(void) // ret: ? 受信完了
 			setFileSize(RECV_FILE, RecvFinalSize);
 		else
 			DeleteFileDataPart(RECV_FILE, RecvFinalSize, endPos - RecvFinalSize);
+
+		PCS_Resized = 1;
 	}
 	return retval;
 }
 int IsRecvEnded(void)
 {
+restart:
 	RecvFinalSize = s2i64_x(n2x(readLine(RECVFINALSIZE_FILE)));
 
 	if(getFileSize(RECV_FILE) < RecvFinalSize) // ? 受信未完
@@ -66,5 +74,11 @@ int IsRecvEnded(void)
 	if(!existFile(CHUNKEDMODE_FILE)) // ? 非チャンク -> 受信完了
 		return 1;
 
-	return ParseChunkSize();
+	if(ParseChunkSize())
+		return 1;
+
+	if(PCS_Resized)
+		goto restart;
+
+	return 0;
 }
