@@ -99,7 +99,7 @@ int ParseHeader(void)
 				*p = '\0';
 				p++;
 
-				Field_t *i = nb(Field_t);
+				Field_t *i = nb_(Field_t);
 				i->Name = strx(line);
 				i->Value = strx(p);
 
