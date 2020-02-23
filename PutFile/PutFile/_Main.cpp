@@ -445,6 +445,15 @@ static void DeleteUploadedFile(void)
 
 	memFree(delPath);
 }
+static void DeleteUploadedFile_All(void)
+{
+	autoList<char *> *files = ls(UploadDir);
+
+	for(int index = 0; index < files->GetCount(); index++)
+		removeFile(files->GetElement(index));
+
+	releaseList(files, (void (*)(char *))memFree);
+}
 static void LoadIndexFormatFile(void)
 {
 	IndexData = untokenize_xc(readLines(IndexFormatFile), "\n");
@@ -579,6 +588,17 @@ static void MakeIndex(void)
 		1
 		);
 	IndexData = replace(IndexData, "$(no-overwrite)", NoOverwriteFlag ? "[上書き禁止]" : "", 1);
+	IndexData = replace(
+		IndexData,
+		"$(delete-all)",
+		ShowDeleteButtonFlag ?
+			"<form method=\"post\" action=\"/\" accept-charset=\"UTF-8\" enctype=\"multipart/form-data\">"
+			"<input type=\"hidden\" name=\"delete-all\" value=\"delete-all\"/>"
+			"<input type=\"submit\" value=\"全て削除\"/>"
+			"</form>"
+			: "",
+		1
+		);
 
 	releaseList(files, (void (*)(char *))memFree);
 	memFree(fileLinkListPtn);
@@ -679,6 +699,15 @@ int main(int argc, char **argv)
 			);
 		CheckPassword();
 		DeleteUploadedFile();
+	}
+	if(existFile(DELETEALL_FILE))
+	{
+		errorCase_m(
+			!ShowDeleteButtonFlag,
+			"全削除ボタンは無効です。"
+			);
+		CheckPassword();
+		DeleteUploadedFile_All();
 	}
 	LoadIndexFormatFile();
 	MakeIndex();

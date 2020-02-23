@@ -5,6 +5,7 @@
 #define UPLOADDATA_FILE "[file].body.httdat"
 #define UPLOADLOCALPATH_FILE "[file].filename.httdat"
 #define DELETELOCALPATH_FILE "[delete].body.httdat"
+#define DELETEALL_FILE "[delete-all].body.httdat"
 #define PASSWORD_FILE "[password].body.httdat"
 
 #define INDEX_FILE "index.htm"

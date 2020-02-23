@@ -46,6 +46,7 @@ a:hover {
 <div><input type="file" name="file" size="100"/>$(password)$(no-overwrite)</div>
 <div><input type="submit" value="アップロード / リスト更新"/></div>
 </form>
+<div>$(delete-all)</div>
 <hr/>
 $(uploaded-file-list)
 <hr/>

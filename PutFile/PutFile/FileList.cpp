@@ -17,6 +17,8 @@
 */
 struct _finddata_t lastFindData;
 
+static int ls_NormalMode = 0;
+
 autoList<char *> *ls(char *dir, char *wCard)
 {
 	autoList<char *> *paths = new autoList<char *>();
@@ -35,18 +37,21 @@ autoList<char *> *ls(char *dir, char *wCard)
 
 			errorCase(strchr(name, '?')); // ? unicode を含む
 
-			// ディレクトリ無視
-			if(lastFindData.attrib & _A_SUBDIR)
+			if(!ls_NormalMode)
 			{
-				cout("ディレクトリを無視します。\n");
-				continue;
-			}
+				// ディレクトリ無視
+				if(lastFindData.attrib & _A_SUBDIR)
+				{
+					cout("ディレクトリを無視します。\n");
+					continue;
+				}
 
-			// index.htm 無視
-			if(!_stricmp(name, INDEX_FILE))
-			{
-				cout("\"" INDEX_FILE "\" を無視します。\n");
-				continue;
+				// index.htm 無視
+				if(!_stricmp(name, INDEX_FILE))
+				{
+					cout("\"" INDEX_FILE "\" を無視します。\n");
+					continue;
+				}
 			}
 
 			paths->AddElement(combine(dir, name));
@@ -61,7 +66,9 @@ autoList<char *> *ls(char *dir, char *wCard)
 }
 autoList<char *> *lss(char *dir, char *wCard)
 {
+	ls_NormalMode = 1;
 	autoList<char *> *paths = ls(dir, wCard);
+	ls_NormalMode = 0; // restore
 
 	for(int index = 0; index < paths->GetCount(); index++)
 	{
