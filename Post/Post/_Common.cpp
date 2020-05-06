@@ -65,7 +65,7 @@ void TrimHeaderToken(char *token)
 void CheckDiskFree2(char *source, int lineno, char *function)
 {
 	char *cwd = getCwd();
-	updateDiskSpace(cwd[0]);
+	updateDiskSpace_Dir(cwd);
 	memFree(cwd);
 
 //	LOGPOS();

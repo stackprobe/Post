@@ -150,7 +150,7 @@ static int ReadPartEnd(FILE *fp) // ret: ? Œp‘±
 static void PreCheckDiskFree(void)
 {
 	char *cwd = getCwd();
-	updateDiskSpace(cwd[0]);
+	updateDiskSpace_Dir(cwd);
 	cout("## %s\n", cwd);
 	memFree(cwd);
 
