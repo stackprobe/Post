@@ -78,18 +78,18 @@ static autoList<char *> *GetUploadedFiles(int sort_order = SortOrder)
 	}
 	return files;
 }
-static __int64 GetDiskFree(char *dir)
+static __int64 GetDiskFree(int drive)
 {
-	updateDiskSpace_Dir(dir);
-	cout("lastDiskFree_User: %I64u (dir: %s)\n", lastDiskFree_User, dir);
+	updateDiskSpace(drive);
+	cout("lastDiskFree: %I64u (drive: %c)\n", lastDiskFree, drive);
 
-	__int64 ret = (__int64)lastDiskFree_User;
+	__int64 ret = (__int64)lastDiskFree;
 	errorCase(ret < 0);
 	return ret;
 }
-static __int64 GetDiskFree_ASz(char *dir, __int64 appendixSize)
+static __int64 GetDiskFree_ASz(int drive, __int64 appendixSize)
 {
-	__int64 ret = GetDiskFree(dir);
+	__int64 ret = GetDiskFree(drive);
 	ret -= appendixSize;
 	cout("diskFree_ASz: %I64d (ASz: %I64d)\n", ret, appendixSize);
 	return ret;
@@ -100,7 +100,7 @@ static __int64 GetUploadDirFree(__int64 uploadDirSize)
 	__int64 dirSize = uploadDirSize;
 	__int64 dirFree = dirSizeMax - dirSize;
 	__int64 diskRealFreeMin = UploadDiskFreeMin;
-	__int64 diskRealFree = GetDiskFree(UploadDir);
+	__int64 diskRealFree = GetDiskFree(UploadDir[0]);
 	__int64 diskFree = diskRealFree - diskRealFreeMin;
 	__int64 ret = m_min(dirFree, diskFree);
 
@@ -309,7 +309,7 @@ static void SlimmingDownUploadDir(int fileNumPlus, __int64 fileSizePlus)
 		0 < files->GetCount() &&
 		(
 			UploadedFileNumMax < files->GetCount() + fileNumPlus ||
-			GetDiskFree_ASz(UploadDir, fileSizePlus) < UploadDiskFreeMin ||
+			GetDiskFree_ASz(UploadDir[0], fileSizePlus) < UploadDiskFreeMin ||
 			UploadDirSizeMax < GetTotalFileSize(files, fileSizePlus)
 			)
 		)
@@ -330,7 +330,7 @@ static void SlimmingDownUploadDir(int fileNumPlus, __int64 fileSizePlus)
 	LOGPOS();
 
 	errorCase_m(
-		GetDiskFree_ASz(UploadDir, fileSizePlus) < UploadDiskFreeMin,
+		GetDiskFree_ASz(UploadDir[0], fileSizePlus) < UploadDiskFreeMin,
 		"アップロードされたファイルを追加するために必要なディスクの空き領域を確保出来ませんでした。<br/>"
 		"或いは、リストの更新に失敗<br/>"
 		"（空き領域確保のための削除シーケンスは実行されました）"
