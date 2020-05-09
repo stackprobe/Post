@@ -81,9 +81,9 @@ static autoList<char *> *GetUploadedFiles(int sort_order = SortOrder)
 static __int64 GetDiskFree(char *dir)
 {
 	updateDiskSpace_Dir(dir);
-	cout("lastDiskFree: %I64u (dir: %s)\n", lastDiskFree, dir);
+	cout("lastDiskFree_User: %I64u (dir: %s)\n", lastDiskFree_User, dir);
 
-	__int64 ret = (__int64)lastDiskFree;
+	__int64 ret = (__int64)lastDiskFree_User;
 	errorCase(ret < 0);
 	return ret;
 }

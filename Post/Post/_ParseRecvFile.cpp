@@ -154,7 +154,7 @@ static void PreCheckDiskFree(void)
 	cout("## %s\n", cwd);
 	memFree(cwd);
 
-	__int64 currDiskFree = (__int64)lastDiskFree;
+	__int64 currDiskFree = (__int64)lastDiskFree_User;
 	__int64 recvFileSize = getFileSize(RECV_FILE);
 	__int64 destDiskFree = currDiskFree - recvFileSize;
 

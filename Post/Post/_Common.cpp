@@ -69,12 +69,12 @@ void CheckDiskFree2(char *source, int lineno, char *function)
 	memFree(cwd);
 
 //	LOGPOS();
-//	cout("LDF: %I64d\n", lastDiskFree);
+//	cout("LDF: %I64d\n", lastDiskFree_User);
 //	cout("DFM: %I64d\n", DiskFreeMin);
-	cout("LDF_DFM: %I64d_%I64d @ %s %d %s\n", lastDiskFree, DiskFreeMin, source, lineno, function);
+	cout("LDF_DFM: %I64d_%I64d @ %s %d %s\n", lastDiskFree_User, DiskFreeMin, source, lineno, function);
 
-//	errorCase(lastDiskFree < (uint64)DiskFreeMin); // old
-	if(lastDiskFree < (uint64)DiskFreeMin)
+//	errorCase(lastDiskFree_User < (uint64)DiskFreeMin); // old
+	if(lastDiskFree_User < (uint64)DiskFreeMin)
 	{
 		ErrorRes(); // ディスクの空き領域が不足しています。
 	}
