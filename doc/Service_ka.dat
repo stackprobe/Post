@@ -1,3 +1,0 @@
-GET  "<BASE>Get.exe" /-L /E:01 DocRoot.dat
-HEAD "<BASE>Get.exe" /-L /H    DocRoot.dat
-POST "<BASE>Post.exe" PutFile.exe
