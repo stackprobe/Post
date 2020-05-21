@@ -15,3 +15,9 @@ http://stackprobe.dip.jp/Uploader
 
 https://github.com/stackprobe/Post/blob/master/doc/Readme.txt
 
+
+関連するリポジトリ
+------------------
+
+https://github.com/stackprobe/HTT
+
