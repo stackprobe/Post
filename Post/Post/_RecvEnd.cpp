@@ -37,7 +37,7 @@ static int ParseChunkSize(void) // ret: ? 受信完了
 
 	// CHUNK_TRAILER を読んでいない。XXX
 
-	// todo
+	// HACK
 	// Chunked-Body の最後の CR-LF 又は CHUNK_TRAILER を１バイトでも受信すると、
 	// 下の if(!feof(fp)) に入ってしまい、応答を開始してしまう。
 
