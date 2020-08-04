@@ -35,7 +35,7 @@ static int ParseChunkSize(void) // ret: ? 受信完了
 	int retval = 0;
 	__int64 endPos = -1;
 
-	// CHUNK_TRAILER を読んでいない。XXX
+	// CHUNK_TRAILER を読んでいない。HACK
 
 	// HACK
 	// Chunked-Body の最後の CR-LF 又は CHUNK_TRAILER を１バイトでも受信すると、
