@@ -7,7 +7,7 @@
 ビルド済み配布物
 ----------------
 
-http://stackprobe.dip.jp/Uploader
+http://stackprobe.ccsp.mydns.jp/Uploader
 
 
 マニュアル
